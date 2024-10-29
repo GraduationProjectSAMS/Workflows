@@ -1,0 +1,17 @@
+name: Call Reusable Auto-Pull Workflow
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  auto-pull:
+    uses: Learnovia-egy/Workflows/.github/workflows/auto-pull.yml@main
+    secrets: inherit
+    with:
+      commands: |
+        php artisan migrate
+        php artisan db:seed --class=PermissionSeeder
+        php artisan db:seed --class=TranslationSeeder
+        composer install
