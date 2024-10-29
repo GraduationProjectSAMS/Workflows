@@ -2,6 +2,12 @@ name: Auto Pull Changes (All Branches)
 
 on:
   workflow_call:
+    inputs:
+      commands:
+        description: 'Commands to run after pulling the latest code'
+        required: true
+        default: 'echo "No commands to run"'
+        type: string
 
 jobs:
   deploy:
@@ -57,12 +63,12 @@ jobs:
               git fetch --all &&
               git checkout $branchName &&
               git reset --hard origin/$branchName &&
-              
+          
               # Run commands passed from the child workflow
               ${{
                 inputs.commands
               }} &&
-              
+          
               git checkout \$currentBranchName &&
               git stash pop
             " || echo "Error: Could not update code on $user@$host" &
