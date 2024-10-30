@@ -19,7 +19,7 @@ jobs:
         with:
           repository: GraduationProjectSAMS/Workflows
           ref: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
 
       - name: Setup SSH for Access
         env:
