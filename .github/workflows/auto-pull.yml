@@ -2,9 +2,6 @@ name: Auto Pull Changes (All Branches)
 
 on:
   workflow_call:
-    secrets:
-      personal_access_token:
-      required: true
     inputs:
       commands:
         description: 'Commands to run after pulling the latest code'
