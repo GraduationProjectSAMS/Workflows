@@ -50,7 +50,7 @@ jobs:
             host=$(echo "$line" | grep -oP '^[a-zA-Z0-9.-]+')
             user=$(echo "$line" | grep -oP 'user=\K\w+')
             dir=$(echo "$line" | grep -oP 'dir=\K\S+')
-            echo "Connecting to $user@$host"
+            echo "Connecting to $user@$host:$dir"
             if [ -n "$unresolvedHost" ] && grep -q "$host" unresolved_hosts.txt; then
               echo "Skipping $user@$host due to unresolved host"
               continue
