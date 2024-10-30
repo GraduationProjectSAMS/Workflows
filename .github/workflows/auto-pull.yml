@@ -26,7 +26,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
           # Extract IPs from the inventory.ini file and add them to known_hosts with error handling
-          for host in $(grep -Eo '^[a-zA-Z0-9.-]+' inventory.ini); do
+          for host in $(grep -Eo '^[a-zA-Z0-9.-]+' /inventory.ini); do
             echo "Adding $host to known_hosts"
             ssh-keyscan -H $host >> ~/.ssh/known_hosts 2>/dev/null || {
               echo "Warning: $host is unreachable or failed to add to known_hosts"
@@ -73,6 +73,6 @@ jobs:
               git stash pop
             " || echo "Error: Could not update code on $user@$host" &
 
-          done < <(grep -E '^[^\[#;]' inventory.ini)
+          done < <(grep -E '^[^\[#;]' /inventory.ini)
           wait
           echo "Code pull process completed on all servers"
