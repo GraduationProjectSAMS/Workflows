@@ -60,6 +60,9 @@ jobs:
             ssh -o "StrictHostKeyChecking=no" "$user@$host" "
               echo 'Connected to $user@$host'
               cd $dir &&
+              sudo chown -R ubuntu:ubuntu $dir.git &&
+              sudo chmod -R u+rwX $dir.git
+          
               git stash --include-untracked &&
               currentBranchName=\$(git rev-parse --abbrev-ref HEAD) &&
               echo \"Current branch is \$currentBranchName\" &&
