@@ -29,6 +29,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
           # Run commands passed from the child workflow
-            echo  ${{
+            bash -c "${{
                 inputs.commands
-              }} &&
+              }}"
+          echo "Commands executed successfully"
