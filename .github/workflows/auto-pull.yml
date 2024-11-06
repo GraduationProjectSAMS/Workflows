@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: test secrets
-        env: |
+        env:
           TOTO: ${{ secrets.PEM }}
         run: |
           echo hello
